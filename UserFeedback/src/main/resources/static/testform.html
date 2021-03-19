@@ -2,7 +2,25 @@
 <html>
 <head>
 
-<script src="testform.js">
+<script>
+function validateForm() {
+  var x = document.forms["myForm"]["user"].value;
+  var y = document.forms["myForm"]["comment"].value;
+  var z = document.forms["myForm"]["rating"].value;
+  if (x == "" || x == null) {
+    alert("Name must be filled out");
+    return false;
+  }
+  if (y == "" || y == null){
+  	alert("Comment must be filled out");
+    return false;
+  }
+  if (z =="" || z == null){
+  	alert("Rating must be filled out");
+    return false;
+  }
+  
+}
 </script>
 
 </head>
@@ -11,7 +29,7 @@
 
 <h2>Feedback Test Form</h2>
 
-<form onsubmit="SubmitTestForm()" action = "/feedback" method = "post">
+<form name ="myForm" onsubmit="return validateForm()" action = "/feedback" method = "post" required>
   <label for="user">Name:</label><br>
   <input type="text" id="user" name="user" ><br>
   <label for="comment">Comment:</label><br>
