@@ -32,18 +32,13 @@ public class FeedbackController {
         return feedbackService.GetAllFeedback();
     }
 	
-	@PostMapping("/feedback")
-	//public Feedback addNewFeedback(@RequestBody Feedback newFeedback)
-	public Feedback addNewFeedback(@RequestParam("user")String user, 
-			@RequestParam("comment")String comment, @RequestParam("rating")int rating) {
-		// TODO: Do something useful here.
-		logger.info(user);
+	//curl -X POST localhost:8090/feedback -H "Content-type:application/json" -d "{\"comments\":\"Awesome\",\"rating\":10,\"user\":\"tim\"}"
+	@PostMapping(value = "/feedback")
+	public Feedback addNewFeedback(@RequestBody Feedback newFeedback) {
 		
-		Feedback f1 = new Feedback(user, rating, comment);
-		
-		feedbackService.addFeedback(f1);
+		feedbackService.addFeedback(newFeedback);
 		// Add the Feedback.
-		return f1;  // Change this.
+		return newFeedback;
 	}
 	
 
