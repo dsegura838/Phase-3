@@ -24,4 +24,8 @@ public class TaskService {
 		
 		return(taskRepository.findAllByUser(user));
 	}
+	//add new task
+	public Task addTask(Task task) {
+		return taskRepository.save(task);
+	}
 }

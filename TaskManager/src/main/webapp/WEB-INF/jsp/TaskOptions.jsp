@@ -8,5 +8,8 @@
 </head>
 <body>
 	<a href="/add">Add new task</a><br>
+	<a href="/display">Display Tasks</a>
+	<a href="/update">Update Task</a>
+	<a href="/delete">Delete Task</a>
 </body>
 </html>

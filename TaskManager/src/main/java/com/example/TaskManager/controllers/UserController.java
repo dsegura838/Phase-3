@@ -47,9 +47,9 @@ public class UserController {
 	
 	//login processing
 	@PostMapping(value="/login")
-	public String validate( @RequestParam String email) {
+	public String validate( @RequestParam String email, @RequestParam String password) {
 		
-		userService.GetUserByEmail(email);
+		userService.validate(password, email);
 		
 		return "TaskOptions";
 	}

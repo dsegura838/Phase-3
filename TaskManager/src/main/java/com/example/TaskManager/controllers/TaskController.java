@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.TaskManager.entities.Task;
 import com.example.TaskManager.services.TaskService;
 import com.example.TaskManager.services.UserService;
 
@@ -26,8 +27,15 @@ public class TaskController {
 	//add new tasks
 	@GetMapping(value="/add")
     public String showTaskPage() {   
-
+		
 		return "addTask";
+	}
+	
+	@PostMapping(value="/add")
+	public String addTask(Task newTask) {
+		
+		taskService.addTask(newTask);
+		return "TaskOptions";
 	}
 	
 	

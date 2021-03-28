@@ -9,10 +9,10 @@
 <body>
 
 <form action="task" method="post">
- <label for="fname">First name:</label><br>
-  <input type="text" id="fname" name="fname"><br>
-  <label for="lname">Last name:</label><br>
-  <input type="text" id="lname" name="lname"><br>
+ <label for="name">Task name:</label><br>
+  <input type="text" id="name" name="name"><br>
+  <!--  <label for="lname">Email:</label><br>
+  <input type="text" id="lname" name="lname"><br> -->
   <label for="sdate">Start Date:</label><br>
   <input type="date" id="sdate" name="sdate"><br>
   <label for="edate">End Date:</label><br>

@@ -22,16 +22,31 @@ public class UserService {
 		return userRepository.findAll();
 	}
 	
-	public User GetUserByEmail(String email) {
-		
+//	public boolean checkPwd(String password) {
+//		User foundUser = userRepository.;
+//		if()
+//	}
+	
+	public User validate(String password, String email) {
 		User foundUser = userRepository.findByEmail(email);
 		
-		if(isValid(email)) {
-			throw new UserNotFoundException();
+		if(foundUser != null && foundUser.getPassword().equals(password)) {
 			
+			return foundUser;
+		}else {
+			throw new UserNotFoundException();
 		}
-		return foundUser;
 	}
+//	public User GetUserByEmail(String email) {
+//		
+//		User foundUser = userRepository.findByEmail(email);
+//		
+//		if(isValid(email)) {
+//			throw new UserNotFoundException();
+//			
+//		}
+//		return foundUser;
+//	}
 	
 	public boolean isValid(String email) {
 		
