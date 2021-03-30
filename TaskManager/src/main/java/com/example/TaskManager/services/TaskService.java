@@ -28,6 +28,13 @@ public class TaskService {
 		
 		return(taskRepository.findAllByUser(user));
 	}
+	
+//	public Iterable<Task> GetTasksByUser_ID(int id) {
+//	//TODO: what do we do if the user doesn't have any tasks or doesn't exist?
+//	
+//	
+//	return (taskRepository.findAllByUser_ID(id));
+//}
 	//add new task
 	public Task addTask(Task task) {
 		return taskRepository.save(task);
@@ -37,7 +44,8 @@ public class TaskService {
 		// TODO Auto-generated method stub
 		taskRepository.save(task);
 	}
-	public void DeleteTask(Task task) {
-		taskRepository.delete(task);
+	public void DeleteTask(int id) {
+		taskRepository.deleteById(id);
+		//taskRepository.delete(task);
 	}
 }

@@ -5,6 +5,7 @@ package com.example.TaskManager.entities;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -28,8 +29,9 @@ public class User {
     
     private String password;
    
-    @OneToMany(mappedBy="user")
-    private List<Task> tasks = new ArrayList<>();
+    @OneToMany(cascade = CascadeType.ALL, mappedBy="user")
+    private List<Task> tasks;
+    // = new ArrayList<>()
     
     //May need to change////////////////////////
     public List<Task> getTasks() {

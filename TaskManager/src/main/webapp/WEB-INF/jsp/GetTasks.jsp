@@ -19,7 +19,7 @@
 	        <td>${task.startDate}</td>
 	        <td>${task.endDate}</td>
 	        <td>${task.severity}</td>
-	        <!--<td>${task.user_id}</td> -->
+	        <td>${task.user.id}</td>
 	        <td>
 	        	<a href = "/update/${task.id}">Edit Task</a>
 	        	<a href ="/delete/${task.id}">Delete Task</a>

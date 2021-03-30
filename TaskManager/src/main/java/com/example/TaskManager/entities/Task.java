@@ -2,6 +2,7 @@ package com.example.TaskManager.entities;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -21,11 +22,11 @@ import java.util.Date;
 public class Task {
 
 	
-	@Override
-	public String toString() {
-		return "Task [id=" + id + ", name=" + name + ", startDate=" + startDate + ", endDate=" + endDate + ", severity="
-				+ severity + ", description=" + description + "]";
-	}
+//	@Override
+//	public String toString() {
+//		return "Task [id=" + id + ", name=" + name + ", startDate=" + startDate + ", endDate=" + endDate + ", severity="
+//				+ severity + ", description=" + description + "]";
+//	}
 
 	@Id
 	   @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -40,25 +41,25 @@ public class Task {
 	   private String severity;
 	   private String description;
 	   //private String email;
-	   
-	   private int userID;
+	  
+	   //private int userID;
 	   
 	   ///////////////////////////////////////////////////Might need to fix
-	   @ManyToOne(cascade = CascadeType.ALL)
-	   @JoinColumn(name="user_id", referencedColumnName = "id")
+	   @ManyToOne(fetch =FetchType.LAZY)
+	   @JoinColumn(name="user", nullable=true)
+	   //referencedColumnName = "id"
 	   private User user;
 	   
-	   
+	  //int userID 
 	public Task(String name, Date startDate, Date endDate, String severity, String description,
-			int userID) {
+			User user) {
 		super();
 		this.name = name;
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.severity = severity;
 		this.description = description;
-		//this.email = email;
-		this.userID = userID;
+		this.user = user;
 	}
 	
 	public Task() {

@@ -47,11 +47,11 @@ public class TaskController {
 		return "addTask";
 	}
 	
-	@PostMapping(value="/add")
+	@PostMapping(value="/add/{id}")
 	public String addTask(ModelMap model, @RequestParam String name, @RequestParam Date sdate,
 			@RequestParam Date edate, @RequestParam String description, @RequestParam String severity, @PathVariable("id") int id) {
 			
-		
+			User user = userService.GetUserById(id);
 //			int id = user.getId();
 //					
 //			System.out.println(user);
@@ -59,7 +59,7 @@ public class TaskController {
 //			
 //			model.addAttribute("id", id);
 		
-		Task task = new Task(name, sdate, edate, description, severity, id);
+		Task task = new Task(name, sdate, edate, description, severity, user);
 		taskService.addTask(task);
 		return "TaskOptions";
 	}
@@ -70,6 +70,8 @@ public class TaskController {
 	public String showTasks(@PathVariable("id") int id,ModelMap model) {
 		User user = userService.GetUserById(id);
 		Iterable<Task> task = taskService.GetTasksByUser(user);
+		//Iterable<Task> task = taskService.GetTasksByUser_ID(id);
+		
 		
 		//create arraylist to store our user values
 		//List<Task> t = new ArrayList<>();
@@ -90,6 +92,16 @@ public class TaskController {
 		
 		return "GetTasks";
 	}
+	//@PostMapping
+	@RequestMapping(value="/display/{id}", method = RequestMethod.POST)
+	public String displayTasks(@PathVariable("id") int id,ModelMap model) {
+		User user = userService.GetUserById(id);
+		Iterable<Task> task = taskService.GetTasksByUser(user);
+		
+		model.addAttribute("tasks", task);
+		
+		return "GetTasks";
+	}
 	
 	@RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
 	public String editRecord(@PathVariable("id") int id, Map<String, Object> map) 
@@ -98,6 +110,7 @@ public class TaskController {
 		
 		User user = userService.GetUserById(id);
 		
+		//Iterable<Task> task =taskService.GetTasksByUser_ID(id);
 		Iterable<Task> task =taskService.GetTasksByUser(user);
 //		Task task = taskService.UpdateTask(task);;
 		map.put("task", task);
@@ -108,6 +121,14 @@ public class TaskController {
 	@RequestMapping(value = "/update/{id}/edit", method = RequestMethod.POST)
 	public String update(Task task, Map<String, Object> map) {
 		taskService.UpdateTask(task);
+		return "TaskOptions";
+	}
+	
+	@RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
+	public String deleteTask(@PathVariable("id") int id, Map<String, Object> map) {
+		
+		System.out.println(id);
+		taskService.DeleteTask(id);
 		return "TaskOptions";
 	}
 	

@@ -16,15 +16,15 @@ public class DataTests {
 	@Autowired
 	TaskRepository taskRepository;
 	
-	@Test
-	public void CreateTaskTest()
-	{
-		Task task = new Task("Task 1", null, 
-					null,"High", "Description", 1);
-			
-		
-		taskRepository.save(task);
-		
-
-	}
+//	@Test
+//	public void CreateTaskTest()
+//	{
+//		Task task = new Task("Task 1", null, 
+//					null,"High", "Description", 1);
+//			
+//		
+//		taskRepository.save(task);
+//		
+//
+//	}
 }
