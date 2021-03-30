@@ -42,10 +42,10 @@ public class TaskService {
 		return taskRepository.save(task);
 	}
 
-	public void UpdateTask(int id) {
+	public void UpdateTask(Task taskToUpdate) {
 		// TODO Auto-generated method stub
-		Task task = taskRepository.findById(id);
-		taskRepository.save(task);
+		//Task task = taskRepository.findById(id);
+		taskRepository.save(taskToUpdate);
 	}
 	public void DeleteTask(int id) {
 		taskRepository.deleteById(id);

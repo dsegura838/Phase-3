@@ -9,6 +9,6 @@
 <body>
 	Congrats!
 	
-	<a href="TaskOptions">Go Back to Tasks</a>
+	<a href="/">Logout</a>
 </body>
 </html>

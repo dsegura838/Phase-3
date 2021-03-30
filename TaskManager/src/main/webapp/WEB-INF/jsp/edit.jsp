@@ -11,8 +11,16 @@
 	
 	<form action = "/update" method = "Post" >
 		Enter Name: <input type = "text" name = "name" value ="${task.name}"><br>
-		Enter email: <input type = "number" name = "id" value = "${task.id}"><br>
-		
+		<input type="hidden" id="id" name="taskId" value="${task.id}">
+		<input type="hidden" id="user" name="userID" value="${task.user.id}">
+		Enter Start Date: <input type="date" id="sdate" name="sdate" value="${task.startDate}"><br>
+		Enter End Date: <input type="date" id="edate" name="edate" value="${task.endDate}"><br>
+		Enter Description: <textarea id="description" name="description" value = "${task.description}" rows=10 cols=30></textarea><br>
+		Enter Severity: <select id="severity" name="severity" value ="${task.severity}">
+		  	<option value="high">High</option>
+		  	<option value="medium">Medium</option>
+		  	<option value="low">Low</option>
+		 </select>
 		<input type = "submit">
 	</form>
 		

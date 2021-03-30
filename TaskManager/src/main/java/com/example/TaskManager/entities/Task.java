@@ -46,7 +46,7 @@ public class Task {
 	   
 	   ///////////////////////////////////////////////////Might need to fix
 	   @ManyToOne(fetch =FetchType.LAZY)
-	   @JoinColumn(name="user", nullable=true)
+	   @JoinColumn(name="user_id", nullable=true)
 	   //referencedColumnName = "id"
 	   private User user;
 	   

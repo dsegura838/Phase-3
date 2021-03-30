@@ -23,6 +23,7 @@
 	        <td>
 	        	<a href = "/update/${task.id}">Edit Task</a>
 	        	<a href ="/delete/${task.id}">Delete Task</a>
+	        	
 	        </td>
 	    </tr>
 	  </c:forEach>
