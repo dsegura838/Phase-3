@@ -20,7 +20,7 @@ public class DataTests {
 	public void CreateTaskTest()
 	{
 		Task task = new Task("Task 1", null, 
-					null,"High", "Description", "test@email.com", null);
+					null,"High", "Description", 1);
 			
 		
 		taskRepository.save(task);

@@ -1,15 +1,43 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <html>
 <head>
-<meta charset="ISO-8859-1">
-<title>Task Options Menu</title>
+<style>
+table, th, td {
+  border: 1px solid black;
+}
+</style>
 </head>
 <body>
-	<a href="/add">Add new task</a><br>
-	<a href="/display">Display Tasks</a>
-	<a href="/update">Update Task</a>
-	<a href="/delete">Delete Task</a>
+
+
+<h2>Users</h2>
+
+<table style="float:left">
+   <tr><th>ID</th><th>Name</th><th>Email</th><th>Password</th><th>List Tasks</th><th>Update</th><th>Add</th><th>Delete</th></tr>
+   <c:forEach items="${users}" var="user" varStatus="count">
+    <tr id="${count.index}">
+    	<td>${user.id}</td>
+        <td>${user.name}</td>
+        <td>${user.email}</td>
+        <td>${user.password}</td>
+        <td>
+        	<a href = "/display/${user.id}/">List Tasks</a>
+        </td>
+        <td>
+        	<a href = "/edit/${user.id}/">Update</a>
+        </td>
+         <td>
+        	<a href = "/add/${user.id}/">Add</a>
+        </td>
+         <td>
+        	<a href = "/delete/${user.id}/">Delete</a>
+        </td>
+    </tr>
+  </c:forEach>
+</table>
+
+<a href = "/">Back to Main</a><br>
 </body>
 </html>
+
