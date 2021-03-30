@@ -42,26 +42,21 @@ public class TaskController {
 	
 	//add new tasks
 	@GetMapping(value="/add/{id}")
-    public String showTaskPage() {   
+    public String showTaskPage(ModelMap model, @PathVariable("id") int id) {   
+		
+		model.addAttribute("userID", id);
 		
 		return "addTask";
 	}
 	
-	@PostMapping(value="/add/{id}")
+	@PostMapping(value="/add")
 	public String addTask(ModelMap model, @RequestParam String name, @RequestParam Date sdate,
-			@RequestParam Date edate, @RequestParam String description, @RequestParam String severity, @PathVariable("id") int id) {
-			
-			User user = userService.GetUserById(id);
-//			int id = user.getId();
-//					
-//			System.out.println(user);
-			System.out.println(id);
-//			
-//			model.addAttribute("id", id);
+			@RequestParam Date edate, @RequestParam String description, @RequestParam String severity, @RequestParam int userID) {
+		User user = userService.GetUserById(userID);
 		
 		Task task = new Task(name, sdate, edate, description, severity, user);
 		taskService.addTask(task);
-		return "TaskOptions";
+		return "success";
 	}
 	
 	@RequestMapping(value="/display/{id}", method = RequestMethod.GET)
@@ -70,73 +65,63 @@ public class TaskController {
 	public String showTasks(@PathVariable("id") int id,ModelMap model) {
 		User user = userService.GetUserById(id);
 		Iterable<Task> task = taskService.GetTasksByUser(user);
-		//Iterable<Task> task = taskService.GetTasksByUser_ID(id);
 		
-		
-		//create arraylist to store our user values
-		//List<Task> t = new ArrayList<>();
-				
-		//add users to arraylist
-		//t.add(task);
-		//logger.info("Passing users to view");
 		model.addAttribute("tasks", task);
-		
-		//System.out.println(task.toString());
-				
-		//Iterable<Task> tasks = taskService.GetTasksByUser(user);
-		
-		//int id = user.getId();
-		
-		//System.out.println(id);
-		//model.addAttribute("tasks", tasks);
 		
 		return "GetTasks";
 	}
 	//@PostMapping
-	@RequestMapping(value="/display/{id}", method = RequestMethod.POST)
-	public String displayTasks(@PathVariable("id") int id,ModelMap model) {
-		User user = userService.GetUserById(id);
-		Iterable<Task> task = taskService.GetTasksByUser(user);
-		
-		model.addAttribute("tasks", task);
-		
-		return "GetTasks";
-	}
+//	@RequestMapping(value="/display/{id}", method = RequestMethod.POST)
+//	public String displayTasks(@PathVariable("id") int id,ModelMap model) {
+//		User user = userService.GetUserById(id);
+//		Iterable<Task> task = taskService.GetTasksByUser(user);
+//		
+//		model.addAttribute("tasks", task);
+//		
+//		return "GetTasks";
+//	}
 	
-	@RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
-	public String editRecord(@PathVariable("id") int id, Map<String, Object> map) 
-	{	
-		logger.info("Find task by user");
+//	@RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
+//	public String editRecord(@PathVariable("id") int id, Map<String, Object> map) 
+//	{	
+//		logger.info("Find task by user");
+//		
+//		User user = userService.GetUserById(id);
+//		
+//		//Iterable<Task> task =taskService.GetTasksByUser_ID(id);
+//		Iterable<Task> task =taskService.GetTasksByUser(user);
+////		Task task = taskService.UpdateTask(task);;
+//		map.put("task", task);
+//		
+//		return "/edit";	
+//	}
+	
+	@RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
+	public String update(Map<String, Object> map, @PathVariable("id") int id) {
+		//User user = userService.GetUserById(id);
+		Task task = taskService.getTaskByID(id);
 		
-		User user = userService.GetUserById(id);
-		
-		//Iterable<Task> task =taskService.GetTasksByUser_ID(id);
-		Iterable<Task> task =taskService.GetTasksByUser(user);
-//		Task task = taskService.UpdateTask(task);;
 		map.put("task", task);
 		
-		return "/edit";	
+		
+		return "edit";
+	}
+	@PostMapping(value="/update/{id}")
+	public String updateTask(@PathVariable("id") int id, Map<String, Object> map) {
+		
+		taskService.UpdateTask(id);
+		return "edit";
 	}
 	
-	@RequestMapping(value = "/update/{id}/edit", method = RequestMethod.POST)
-	public String update(Task task, Map<String, Object> map) {
-		taskService.UpdateTask(task);
-		return "TaskOptions";
-	}
 	
-	@RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
+	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
 	public String deleteTask(@PathVariable("id") int id, Map<String, Object> map) {
 		
 		System.out.println(id);
 		taskService.DeleteTask(id);
-		return "TaskOptions";
+		return "success";
 	}
 	
-	
-//	@RequestMapping(value = "/error")
-//	public String showError() {
-//		return "index";
-//	}
 	
 
 }

@@ -28,7 +28,9 @@ public class TaskService {
 		
 		return(taskRepository.findAllByUser(user));
 	}
-	
+	public Task getTaskByID(int id) {
+		return(taskRepository.findById(id));
+	}
 //	public Iterable<Task> GetTasksByUser_ID(int id) {
 //	//TODO: what do we do if the user doesn't have any tasks or doesn't exist?
 //	
@@ -40,8 +42,9 @@ public class TaskService {
 		return taskRepository.save(task);
 	}
 
-	public void UpdateTask(Task task) {
+	public void UpdateTask(int id) {
 		// TODO Auto-generated method stub
+		Task task = taskRepository.findById(id);
 		taskRepository.save(task);
 	}
 	public void DeleteTask(int id) {

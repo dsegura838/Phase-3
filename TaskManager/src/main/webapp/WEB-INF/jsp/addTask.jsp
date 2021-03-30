@@ -12,10 +12,8 @@
  <label for="name">Task name:</label><br>
   <input type="text" id="name" name="name"><br>
   
-  <!-- <label for="lname">Email:</label><br>
-  <input type="text" id="lname" name="lname"><br> 
-  <label for="userId">UserId:</label><br>
-  <input type="number" id="id" name="id"><br> -->
+  <label for="userID">UserID:</label><br>
+  <input type="number" id="userID" name="userID" value = "${userID}"><br>
   <label for="sdate">Start Date:</label><br>
   <input type="date" id="sdate" name="sdate"><br>
   <label for="edate">End Date:</label><br>
