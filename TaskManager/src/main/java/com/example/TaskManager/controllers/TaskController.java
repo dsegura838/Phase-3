@@ -54,7 +54,7 @@ public class TaskController {
 			@RequestParam Date edate, @RequestParam String description, @RequestParam String severity, @RequestParam int userID) {
 		User user = userService.GetUserById(userID);
 		
-		Task task = new Task(name, sdate, edate, description, severity, user);
+		Task task = new Task(name, sdate, edate, severity, description, user);
 		taskService.addTask(task);
 		return "success";
 	}
@@ -70,7 +70,18 @@ public class TaskController {
 		
 		return "GetTasks";
 	}
-
+//	@RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
+//	public String update(Map<String, Object> map, @PathVariable("id") int id) {
+//		//User user = userService.GetUserById(id);
+//		Task task = taskService.getTaskByID(id);
+//		map.put("userID", id);
+//		map.put("task", task);
+////		model.addAttribute("userID", id);
+////		model.addAttribute("task", task);
+//		
+//		
+//		return "edit";
+//	}
 	
 	@RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
 	public String update(ModelMap model, @PathVariable("id") int id) {
@@ -85,13 +96,25 @@ public class TaskController {
 	}
 	@PostMapping(value="/update")
 	public String updateTask(ModelMap model, @RequestParam String name, @RequestParam Date sdate,
-			@RequestParam Date edate, @RequestParam String description, @RequestParam String severity, @RequestParam int userID) {
+			@RequestParam Date edate, @RequestParam String description, @RequestParam String severity, @RequestParam int userID, @RequestParam int taskId) {
 		User user = userService.GetUserById(userID);
+/////////////////////////
+		Task task = taskService.getTaskByID(taskId);
+		task.setName(name);
+		task.setStartDate(edate);
+		task.setEndDate(edate);
+		task.setDescription(description);
+		task.setSeverity(severity);
+		task.setUser(user);
 		
-		Task task = new Task(name, sdate, edate, description, severity, user);
+		System.out.println(taskId);
+/////////////////////////
+		//Task task = new Task(name, sdate, edate, description, severity, user);
 		taskService.UpdateTask(task);
 		return "success";
 	}
+	
+
 	
 	
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)

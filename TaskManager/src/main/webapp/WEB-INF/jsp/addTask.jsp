@@ -14,13 +14,17 @@
   
   <label for="userID">UserID:</label><br>
   <input type="number" id="userID" name="userID" value = "${userID}"><br>
+  
   <label for="sdate">Start Date:</label><br>
   <input type="date" id="sdate" name="sdate"><br>
+  
   <label for="edate">End Date:</label><br>
   <input type="date" id="edate" name="edate"><br>
+  
   <label for="description">Description:</label><br>
   <textarea id="description" name="description" rows=10 cols=30></textarea><br>
-  <label for="sev">Severity</label><br>
+  
+  <label for="severity">Severity</label><br>
   <select id="severity" name="severity">
   	<option value="high">High</option>
   	<option value="medium">Medium</option>

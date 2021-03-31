@@ -54,6 +54,7 @@ public class Task {
 	public Task(String name, Date startDate, Date endDate, String severity, String description,
 			User user) {
 		super();
+		//this.id = id;
 		this.name = name;
 		this.startDate = startDate;
 		this.endDate = endDate;
@@ -61,6 +62,17 @@ public class Task {
 		this.description = description;
 		this.user = user;
 	}
+	
+//	public void UpdatedTask(int id,String name, Date startDate, Date endDate, String severity, String description,
+//			User user) {
+//		this.id = id;
+//		this.name = name;
+//		this.startDate = startDate;
+//		this.endDate = endDate;
+//		this.severity = severity;
+//		this.description = description;
+//		this.user = user;
+//	}
 	
 	public Task() {
 		
